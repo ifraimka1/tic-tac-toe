@@ -20,6 +20,10 @@ switch (action.type) {
         winner: winner,
         round: state.round + 1
     };
+
+    case 'RESET':
+    return initialState;
+
     default:
     return state;
 }

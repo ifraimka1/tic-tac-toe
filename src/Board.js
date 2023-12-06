@@ -2,8 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Square from './Square';
+import Reset from './Reset';
 
-const Board = ({ squares, xIsNext, winner, round, onClick }) => {    
+const Board = ({ squares, xIsNext, winner, round, onClick, onClickReset }) => {    
     let status;
     if (winner) {
       status = "Победитель: " + winner;
@@ -36,6 +37,7 @@ const Board = ({ squares, xIsNext, winner, round, onClick }) => {
       <div className="status">
         {status}
       </div>
+      <Reset onClick={() => onClickReset()}/>
     </div>
   );
 };
@@ -49,6 +51,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onClick: (index) => dispatch({ type: 'CLICK_SQUARE', index }),
+  onClickReset: () => dispatch({ type: 'RESET' })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
